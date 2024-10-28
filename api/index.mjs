@@ -1,4 +1,4 @@
-import { createServer } from "./server.mjs";
+import { createServer } from "./server.js";
 
 const server = createServer();
 
