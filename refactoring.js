@@ -48,24 +48,7 @@ function fn1(x, y, z) {
     }
   }
   
-  // Fonction pour mettre à jour les soldes
-  function fn3(res, update, bets) {
-    update(old => 
-      old.map((bal, idx) => {
-        if (res[idx] === "Gagné") {
-          console.log(`Player ${idx + 1} won and earned ${bets[idx] * 2}!`);
-          return bal + bets[idx] * 2;
-        } else if (res[idx] === "Perdu") {
-          console.log(`Player ${idx + 1} lost.`);
-          return bal;
-        } else if (res[idx] === "Égalité") {
-          console.log(`Player ${idx + 1} tied and recovered their bet of ${bets[idx]}.`);
-          return bal + bets[idx];
-        }
-        return bal;
-      })
-    );
-  }
+
   
   // Fonction pour simuler la mise à jour des paris
   let x = [50, 30];
