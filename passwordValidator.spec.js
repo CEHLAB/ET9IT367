@@ -10,10 +10,15 @@ const validatePassword = require('./passwordValidator');
 test('password has at least one digit', () => {
     expect(validatePassword('password1')).toBe(true);
     expect(validatePassword('password')).toBe(false);
-})*/
+})
 
 
 test('should validate that password has at least one letter', () => {
     expect(validatePassword('password1')).toBe(true);
     expect(validatePassword('12345678')).toBe(false);
+});*/
+test('should validate password with customizable minimum length', () => {
+    expect(validatePassword('pass1234', 6)).toBe(true);
+    expect(validatePassword('pass1', 6)).toBe(false);
 });
+
