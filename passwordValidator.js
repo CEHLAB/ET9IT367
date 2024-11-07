@@ -6,4 +6,3 @@ function validatePassword(password, minLength = 8, minLetters = 1, minDigits = 1
     return baseValidation && customRules.every(rule => rule(password));
 }
 module.exports = validatePassword;
-

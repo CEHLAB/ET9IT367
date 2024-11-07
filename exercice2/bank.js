@@ -2,8 +2,8 @@
 const bankDAO = require('./bankDAO');
 
 const bank = {
-    getBalance: function() {
-        bankDAO.retrieveBalance();
+    getBalance: function(accountId) {
+        bankDAO.retrieveBalance(accountId);
     }
 };
 
