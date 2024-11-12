@@ -5,7 +5,13 @@ export const accountDAO = {
     ACCOUNT_LIST.push(account);
     console.log("Contenu de la BDD:", ACCOUNT_LIST);
   },
-  retrieveAccountList() {},
+  retrieveAccountList() {
+    return ACCOUNT_LIST.map(({ id, lastName, firstName }) => ({
+      id,
+      lastName,
+      firstName,
+    }));
+  },
   updateAccount(account) {},
   retrieveAccount(id) {},
 };
