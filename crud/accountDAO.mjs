@@ -1,29 +1,29 @@
-// accountDAO.mjs
 import { ACCOUNT_LIST } from "./database.mjs";
 
 export const accountDAO = {
   insertAccount(account) {
     ACCOUNT_LIST.push(account);
-    console.log("Contenu de la BDD:", ACCOUNT_LIST);
+    console.log("Current database content:", ACCOUNT_LIST);
   },
-
   retrieveAccountList() {
-    return ACCOUNT_LIST.map(({ creationDate, ...accountData }) => ({
-      ...accountData,
-    }));
+    return ACCOUNT_LIST.map(({ creationDate, ...rest }) => rest);
   },
-
-  updateAccount(updatedAccount) {
-    const index = ACCOUNT_LIST.findIndex(account => account.id === updatedAccount.id);
+  updateAccount(account) {
+    const index = ACCOUNT_LIST.findIndex((acc) => acc.id === account.id);
     if (index !== -1) {
-      ACCOUNT_LIST[index] = updatedAccount;
-      console.log("Contenu de la BDD après mise à jour:", ACCOUNT_LIST);
-    } else {
-      console.log(`Account with id ${updatedAccount.id} not found in database.`);
+      ACCOUNT_LIST[index] = account;
+      console.log("Updated database content:", ACCOUNT_LIST);
     }
   },
-
   retrieveAccount(id) {
-    return ACCOUNT_LIST.find(account => account.id === id);
+    const account = this.fetchAccountById(id);
+    if (account) {
+      const { lastName, firstName, ...rest } = account;
+      return { ...rest, name: `${firstName} ${lastName}` };
+    }
+    return null;
+  },
+  fetchAccountById(id) {
+    return ACCOUNT_LIST.find((acc) => acc.id === id);
   },
 };

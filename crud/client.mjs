@@ -1,16 +1,21 @@
 import { accountService } from "./accountService.mjs";
 
-accountService.addAccount("anonyme1", "anonyme2");
+accountService.addAccount("Chakir", "Chakir");
 
-let accountList = accountService.getAccountList();
-console.log("Liste des comptes avant modification:", accountList);
+const accountList = accountService.getAccountList();
+console.log(
+  "Account list without creation date ( getAccountList Called ):",
+  accountList
+);
 
-if (accountList.length > 0) {
-  const { id } = accountList[0];
-  accountService.saveAccount(id, "nouveauNom", "nouveauPrenom");
+const accountId = accountList[0].id;
+accountService.saveAccount(accountId, "Tempest", "Rimuru");
 
-  accountList = accountService.getAccountList();
-  console.log("Liste des comptes après modification:", accountList);
-} else {
-  console.log("Aucun compte disponible pour la modification.");
-}
+const accountListAfter = accountService.getAccountList();
+console.log(
+  "Account list after update ( getAccountList Called ):",
+  accountListAfter
+);
+
+const account = accountService.getAccount(accountId);
+console.log("Retrieved account:", account);
