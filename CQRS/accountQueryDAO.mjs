@@ -1,17 +1,16 @@
-import { ACCOUNT_LIST } from "./database.mjs";
 import { accountSummaryList } from "./queryDatabase.mjs";
-
+import { accountCache } from "./cache.mjs";
 
 export const accountQueryDAO = {
   retrieveAccountList() {
     return accountSummaryList;
   },
   retrieveAccount(id) {
-    const account =  ACCOUNT_LIST.find((acc) => acc.id === id);
+    const account = accountCache[id]; // Récupérer le compte depuis accountCache
     if (account) {
-      const { lastName, firstName, ...rest } = account;
-      return { ...rest, name: `${firstName} ${lastName}` };
+      return account; // Retourner le compte tel quel
     }
     return null;
   },
+  
 };

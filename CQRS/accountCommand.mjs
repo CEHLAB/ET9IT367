@@ -1,7 +1,7 @@
 import { Account } from "./account.mjs";
 import { accountCommandDAO } from "./accountCommandDAO.mjs";
 import { accountSummaryList } from "./queryDatabase.mjs";
-
+import { accountCache } from "./cache.mjs";
 
 export const accountCommand = {
   addAccount(lastName, firstName) {
@@ -9,6 +9,11 @@ export const accountCommand = {
     accountCommandDAO.insertAccount(account);
     const { creationDate, ...accountSansDate } = account;
     accountSummaryList.push(accountSansDate);
+
+    accountCache[account.id] = {
+      ...accountSansDate,
+      name: `${firstName} ${lastName}`,
+    };
   },
   saveAccount(id, lastName, firstName) {
     const account = accountCommandDAO.fetchAccountById(id);
@@ -23,6 +28,10 @@ export const accountCommand = {
       if (index !== -1) {
         accountSummaryList[index] = accountSansDate;
       }
+      accountCache[account.id] = {
+        ...accountSansDate,
+        name: `${firstName} ${lastName}`,
+      };
     }
   },
 };
