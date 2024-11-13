@@ -1,4 +1,5 @@
 import { ACCOUNT_LIST } from "./database.mjs";
+import { Account } from "./account.mjs";
 
 export const accountCommandDAO = {
   insertAccount(account) {
@@ -11,5 +12,10 @@ export const accountCommandDAO = {
       ACCOUNT_LIST[index] = account;
       console.log("Contenu mis à jour de la base de données :", ACCOUNT_LIST);
     }
+  },
+  fetchAccountById(id) {
+    const result = ACCOUNT_LIST.find((acc) => acc.id === id);
+    const account = new Account(result); 
+    return account;
   },
 };
