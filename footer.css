@@ -1,0 +1,5 @@
+footer {
+    color: var(--main-color);
+    border: var(--border);
+    font-size: var(--font-size-lg);
+}
